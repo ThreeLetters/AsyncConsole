@@ -15,8 +15,9 @@
 */
 var EOL = require('os').EOL
 module.exports = class AsyncConsole {
-constructor(call) {
+constructor(prompt, call) {
   this.call = call;
+  this.prompt = prompt;
 this.stdin = process.stdin;
 this.stdin.setRawMode(true);
 this.stdin.resume();
@@ -24,16 +25,16 @@ this.stdin.setEncoding('utf8');
   this.stdin.on('data',function(key) {
        if (key == '\u0003') { process.exit(); }
 this.onKey(key)
-    
-  }.bind(this)) 
+
+  }.bind(this))
   this.text = [];
     this.console = [];
     this.cursor = {
         x: 0,
         y: 0
-        
+
     }
-  this.log('>')
+  this.log(this.prompt)
 }
 
 onKey(key) {
@@ -62,10 +63,10 @@ onKey(key) {
       default:
           this.key(key)
           break;
-      
+
              }
-      
-  
+
+
 }
   pause() {
       this.stdin.pause()
@@ -89,10 +90,10 @@ onKey(key) {
             a += char
         }
         return a
-    
+
     }
     log(a) {
-        
+
         process.stdout.write(a)
     }
     clearLine() {
@@ -100,8 +101,8 @@ onKey(key) {
     }
   enter() {
       this.log(EOL)
-      
-    if (this.text.length != 0) { 
+
+    if (this.text.length != 0) {
       var text = this.text.join("")
       this.console.push(this.text)
       this.cursor.y = this.console.length
@@ -109,31 +110,31 @@ onKey(key) {
       this.text = [];
       this.call(text)
     }
-      this.log('>')
+      this.log(this.prompt)
   }
      back() {
     if (this.text.length == 0) return;
-        
+
         if (this.cursor.x > 0) {
-          this.text.splice(this.cursor.x-1,1) 
+          this.text.splice(this.cursor.x-1,1)
       this.cursor.x --
         }
-        this.log(this.fill('\r>' + this.text.join("")))
-           this.sendOrig() 
+        this.log(this.fill('\r'+this.prompt + this.text.join("")))
+           this.sendOrig()
   }
-   
+
   up() {
      if (this.cursor.y > 0) this.cursor.y --;
       this.text = this.console[this.cursor.y] || []
        this.cursor.x = this.text.length
-      this.log(this.fill("\r>" + this.text.join("")))
+      this.log(this.fill("\r"+this.prompt + this.text.join("")))
          this.sendOrig()
   }
   down() {
     if (this.cursor.y < this.console.length) this.cursor.y ++;
        this.text = this.console[this.cursor.y] || []
        this.cursor.x = this.text.length
-      this.log(this.fill("\r>" + this.text.join("")))
+      this.log(this.fill("\r"+this.prompt + this.text.join("")))
          this.sendOrig()
   }
   left() {
@@ -153,18 +154,18 @@ onKey(key) {
 
         this.text.splice(this.cursor.x,0,key)
         this.cursor.x ++;
-        this.log(this.fill("\r>" + this.text.join("")))
-        
+        this.log(this.fill("\r"+this.prompt + this.text.join("")))
+
         this.sendOrig()
     }
  sendOrig() {
-     var amount = process.stdout.columns - this.cursor.x - 3
+     var amount = process.stdout.columns - this.cursor.x - 3 - (this.prompt.split("").length) + 1;
      this.log(eval('\'\\x1b[' + amount + 'D\''))
-         
-     
+
+
  }
 onEnter(t) {
-    
-    
+
+
 }
 }
