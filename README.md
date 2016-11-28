@@ -1,5 +1,5 @@
 # AsyncConsole
-Async console for console commands
+Async console for console commands. Works for all devices
 
 ## Usage
 > npm install asyncconsole
