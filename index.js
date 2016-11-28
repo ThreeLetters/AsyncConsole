@@ -1,7 +1,8 @@
 "use strict"
 var EOL = require('os').EOL
 module.exports = class AsyncConsole {
-constructor() {
+constructor(call) {
+  this.call = call;
 this.stdin = process.stdin;
 this.stdin.setRawMode(true);
 this.stdin.resume();
@@ -92,7 +93,7 @@ onKey(key) {
       this.cursor.y = this.console.length
       this.cursor.x = 0;
       this.text = [];
-      this.onEnter(text)
+      this.call(text)
     }
       this.log('>')
   }
