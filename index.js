@@ -34,6 +34,25 @@ onKey(key) {
       
   
 }
+  
+  back() {
+    
+  }
+  enter() {
+    
+  }
+  up() {
+    
+  }
+  down() {
+    
+  }
+  left() {
+    
+  }
+  right() {
+    
+  }
 
 
 }
