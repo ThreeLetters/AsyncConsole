@@ -12,7 +12,26 @@ this.onKey(key)
 }
 
 onKey(key) {
-  
+  switch (key) {
+    case '\u000D':
+      
+      break;
+    case '\u007F:
+      
+      break;
+    case '\u0008':
+      
+      break;
+    case '\u001B\u005B\u0041':
+      
+      break;
+    case '\u001B\u005B\u0042':
+      
+      break;
+      
+      
+             }
+      
   
 }
 
