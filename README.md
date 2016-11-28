@@ -7,7 +7,7 @@ Async console for console commands. Works for all devices
 
 ```
 var AsyncConsole = require('asyncconsole')
-var console = new AsyncConsole(function(input) {
+var console = new AsyncConsole(">", function(input) {
 // do something with the input
 })
 
