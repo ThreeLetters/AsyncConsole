@@ -19,7 +19,7 @@ this.onKey(key)
         y: 0
         
     }
-  
+  this.log('>')
 }
 
 onKey(key) {
