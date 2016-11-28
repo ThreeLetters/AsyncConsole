@@ -90,6 +90,7 @@ onKey(key) {
       var text = this.text.join("")
       this.console.push(this.text)
       this.cursor.y = this.console.length
+      this.cursor.x = 0;
       this.text = [];
       this.onEnter(text)
     }
@@ -141,9 +142,9 @@ onKey(key) {
     }
  sendOrig() {
      var amount = process.stdout.columns - this.cursor.x - 3
-     for (var i = 0; i < amount; i ++) {
-          this.log('\x1b[1D') 
-     }
+     this.log(eval('\'\\x1b[' + amount + 'D\''))
+         
+     
  }
 onEnter(t) {
     
