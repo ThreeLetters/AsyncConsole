@@ -1,0 +1,23 @@
+{
+  "name": "asyncconsole",
+  "version": "1.0.0",
+  "description": "Async console",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJS-development/AsyncConsole.git"
+  },
+  "keywords": [
+    "console",
+    "async"
+  ],
+  "author": "Andrews54757",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AJS-development/AsyncConsole/issues"
+  },
+  "homepage": "https://github.com/AJS-development/AsyncConsole#readme"
+}
