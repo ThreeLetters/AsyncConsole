@@ -16,7 +16,7 @@ onKey(key) {
     case '\u000D':
       
       break;
-    case '\u007F:
+    case '\u007F':
       
       break;
     case '\u0008':
