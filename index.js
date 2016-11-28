@@ -26,13 +26,8 @@ onKey(key) {
     case '\u000D': // enter
       this.enter()
       break;
-<<<<<<< HEAD
     case '\u007F': // back. (mac)
       this.back()
-=======
-    case '\u007F':
-      
->>>>>>> 97846089b05f6aaa5dcb81a3294a120daa322e8c
       break;
     case '\u0008': // back. (win)
       this.back()
