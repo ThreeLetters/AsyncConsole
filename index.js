@@ -15,10 +15,12 @@
 */
 var EOL = require('os').EOL
 module.exports = class AsyncConsole {
-constructor(prompt, call) {
+constructor(prompt, call,test) {
   this.call = call;
+    
   this.prompt = prompt;
 this.stdin = process.stdin;
+    this.test = test;
 this.stdin.setRawMode(true);
 this.stdin.resume();
     this.paused = false;
@@ -35,11 +37,21 @@ this.onKey(key)
         y: 0
 
     }
+    this.constants = {
+        UP: "\u001B\u005B\u0041",
+        DOWN: "\u001B\u005B\u0042",
+        LEFT: "\u001B\u005B\u0044",
+        RIGHT: "\u001B\u005B\u0043",
+        ENTER: "\u000D",
+        BACK1: "\u0008",
+        BACK2: "\u007F"
+    }
+    
   this.log(this.prompt)
 }
 
 onKey(key) {
-    if (this.paused) return;
+    if (this.paused || (this.test && !this.test(key))) return;
   switch (key) {
     case '\u000D': // enter
       this.enter()
