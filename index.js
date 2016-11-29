@@ -109,7 +109,7 @@ onKey(key) {
 
     }
     log(a) {
-
+if (this.paused) return;
         process.stdout.write(a)
     }
     clearLine() {
