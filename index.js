@@ -21,6 +21,7 @@ constructor(prompt, call) {
 this.stdin = process.stdin;
 this.stdin.setRawMode(true);
 this.stdin.resume();
+    this.paused = false;
 this.stdin.setEncoding('utf8');
   this.stdin.on('data',function(key) {
        if (key == '\u0003') { process.exit(); }
@@ -38,6 +39,7 @@ this.onKey(key)
 }
 
 onKey(key) {
+    if (this.paused) return;
   switch (key) {
     case '\u000D': // enter
       this.enter()
@@ -69,9 +71,11 @@ onKey(key) {
 
 }
   pause() {
+      this.paused = true;
       this.stdin.pause()
   }
     resume() {
+        this.paused = false;
         this.stdin.resume()
     }
     escape(a) {
