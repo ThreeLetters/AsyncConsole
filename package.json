@@ -1,6 +1,6 @@
 {
   "name": "asyncconsole",
-  "version": "1.3.5",
+  "version": "1.3.8",
   "description": "Async console",
   "main": "index.js",
   "scripts": {
