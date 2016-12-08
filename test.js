@@ -1,5 +1,4 @@
-var a = require('./index.js')
-var b = new a(' > ', function(data) {
-console.log("Your input: " + data)
-
-})
+var asyncconsole = require('./index.js')
+var prompt = new asyncconsole(' > ', function(data) {
+    console.log("Your input: " + data)
+});
