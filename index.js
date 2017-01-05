@@ -27,7 +27,7 @@ this.stdin.resume();
 this.stdin.setEncoding('utf8');
   this.stdin.on('data',function(key) {
        if (key == '\u0003') {
-          if (this.exit) this.exit(0); else process.exit(); 
+          if (this.exit) this.exit(0); else process.exit(0); 
        }
 this.onKey(key)
 
