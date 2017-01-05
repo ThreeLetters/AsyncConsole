@@ -15,9 +15,9 @@
 */
 var EOL = require('os').EOL
 module.exports = class AsyncConsole {
-constructor(prompt, call,test) {
+constructor(prompt, call,test,exit) {
   this.call = call;
-    
+    this.exit = exit;
   this.prompt = prompt;
 this.stdin = process.stdin;
     this.test = test;
@@ -26,7 +26,9 @@ this.stdin.resume();
     this.paused = false;
 this.stdin.setEncoding('utf8');
   this.stdin.on('data',function(key) {
-       if (key == '\u0003') { process.exit(); }
+       if (key == '\u0003') {
+          if (this.exit) this.exit(0); else process.exit(); 
+       }
 this.onKey(key)
 
   }.bind(this))
